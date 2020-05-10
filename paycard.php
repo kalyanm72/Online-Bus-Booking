@@ -21,7 +21,7 @@ background-color:skyblue;
 position:absolute;
 	height: 60px;
 	width: 480px;
-        top:150px;
+        top:200px;
        left:430px;
 
 }
@@ -39,7 +39,7 @@ background-color:blue;
 	height: 40px;
 	width: 540px;
 position:absolute;
-        top:230px;
+        top:280px;
        left:400px;
 
 }
@@ -49,7 +49,7 @@ position:absolute;
 	font-weight:bold;
 
 position:absolute;
-        top:300px;
+        top:350px;
        left:605px;
 }
 bk
@@ -62,7 +62,7 @@ background-color:lightgreen;
 height: 40px;
 width: 320px;
 position:absolute;
-        top:350px;
+        top:400px;
        left:505px;
 
 }

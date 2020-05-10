@@ -33,12 +33,15 @@ body{
 	font-family: 'Open Sans', sans-serif;
 	background:#fff;
 }
+.isHidden{
+	display: none;
+}
 .wrap{
 	width:80%;
 	margin:0 auto;
 	-moz-transition:all .2s linear;
-	-webkit-transition:all .2s linear; 
-	-o-transition:all .2s linear; 
+	-webkit-transition:all .2s linear;
+	-o-transition:all .2s linear;
 	-ms-transition:all .2s linear;
 }
 .header-top{
@@ -80,16 +83,23 @@ body{
 	color:#FFF;
 	text-decoration:none;
 }
+.username{
+	color: rgb(38, 190, 103);
+	display: block;
+	box-shadow: 10px;
+	margin-left: 10px;
+}
 /********** Login *************/
 #loginContainer {
     position:relative;
 }
+
 #loginContainer a span{
   display:block;
 }
 /* Login Button */
-#loginButton { 
-    display:inline-block;  
+#loginButton {
+    display:inline-block;
     position:relative;
     z-index:30;
     cursor:pointer;
@@ -101,7 +111,7 @@ body{
     right:-25px;
     display:none;
     z-index:9999;
-     width:330px; 
+     width:330px;
     margin-top: 0px;
 	background:#f1f1f1;
 	border-bottom:4px solid #e0e0e0;
@@ -119,9 +129,11 @@ body{
 	border-right:10px solid rgba(0, 0, 0, 0);
 	border-bottom:10px solid #576f6f;
 }
+
 #loginForm{
 	padding:8%;
 }
+
 /* Login Form */
 .login-form h3{
 	font-size:15px;
@@ -151,7 +163,7 @@ body{
  .login-form span i{
   background:#576f6f;
   padding:12px 8px 13px;
-  border-radius:5px 0px 0px 5px;  	
+  border-radius:5px 0px 0px 5px;
   -webkit-border-radius:5px 0px 0px 5px;
   -moz-border-radius:5px 0px 0px 5px;
   -o-border-radius:5px 0px 0px 5px;
@@ -164,17 +176,17 @@ body{
     color:#c8d8d7;
     font-size:14px;
     font-weight:700;
-    background:none;   
+    background:none;
     outline:none;
     border:none;
     margin:0px auto;
-    width:80%;  
+    width:80%;
     -webkit-apperance:none;
     font-family:'Open Sans', sans-serif;
     margin-left:5px;
 }
 .login-form input[type="password"]{
-  letter-spacing:2px;	
+  letter-spacing:2px;
 }
  .login-form input[type="submit"] {
  	display:block;
@@ -336,9 +348,9 @@ body{
 	border-bottom:4px solid #b6bfb6;
 }
 .banner-desc li{
-  display:block;	
+  display:block;
 }
-.banner-desc li span i{ 
+.banner-desc li span i{
   	margin-right:5px;
 }
 .banner-desc li span{
@@ -444,7 +456,7 @@ body{
 }
 .support a.read-more{
 	background:#f28858;
-	border-bottom:4px solid #b56642; 
+	border-bottom:4px solid #b56642;
 	padding:8px 35px;
 	font-size:16px;
 	margin-top:12px;
@@ -504,7 +516,7 @@ body{
 }
  .progress .bar {
 		z-index: 2;
-		height:30px; 
+		height:30px;
 		text-align: center;
 		float:left;
 		-webkit-box-sizing: content-box;
@@ -592,7 +604,7 @@ body{
 	-o-border-radius:10px 10px 0px 0px;
 }
 .news-grid-middle{
- margin:0 2%;	
+ margin:0 2%;
 }
 .news-grid h2{
 	margin:25px 0 10px 0;
@@ -838,7 +850,7 @@ body{
 	margin:0px 0 10px 0;
 }
 .poducts{
-  margin-top:3em;	
+  margin-top:3em;
 }
 .poducts h2{
 	margin:5px 0;
@@ -951,7 +963,7 @@ ul.contact_info span.msg:hover{
 	text-align:center;
 	color: #353434;
 }
-.page-not-found h4{	
+.page-not-found h4{
 	font-size:5em;
 	text-shadow: 1px 1px 1px #FFF, 2px 2px 1px #888;
 	text-transform:uppercase;
@@ -972,7 +984,7 @@ ul.contact_info span.msg:hover{
 	.wrap{
 		width:90%;
 	}
-	
+
 }
 @media (max-width:1024px){
 	.wrap{
@@ -1043,7 +1055,7 @@ ul.contact_info span.msg:hover{
   	text-align:center;
   }
   .social-icons{
-    margin-top:10px;	
+    margin-top:10px;
   }
   .big-arrow{
   	margin-top:-50px;
@@ -1135,9 +1147,5 @@ ul.contact_info span.msg:hover{
 	ul.contact_info li span{
 		width:82%;
 	}
-	
+
 }
-
-
-
-

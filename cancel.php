@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 
 <head>
@@ -143,15 +146,20 @@ if (isset($_POST['pnr']))
 {
 $pnr=$_POST['pnr'];
 }
+function alert($msg) {
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+}
+
 
 if (isset($_POST['mob']))
 {
 $mob=$_POST['mob'];
 }
-
-
-
-
+if(!isset($_SESSION['access_token'])){
+  alert("You are not logged in system log into system and try again");
+  echo "<a href='cancel.html'> go back to cancellations</a>";
+  exit;
+}
 //s$sql = "SELECT  pnr,mob,status FROM reserves,passenger WHERE passenger.pid = reserves.pid and pnr='$pnr' and mob ='$mob' " ;
 $sql = "SELECT email,name,pnr,bid,fromLoc,toLoc,dep_date,dep_time ,arr_time,fare,mob,status FROM reserves,passenger,route WHERE passenger.pid = reserves.pid and pnr='$pnr' and mob ='$mob' and reserves.rid=route.rid " ;
 

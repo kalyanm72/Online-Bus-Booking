@@ -226,6 +226,7 @@ position:absolute;
 
 
 <?php
+session_start();
 $con=mysqli_connect("localhost","root","","bus_ticket");
 if (mysqli_connect_errno())
   {
@@ -233,21 +234,25 @@ if (mysqli_connect_errno())
   }
 
 $email='';
-$mob='';
+function alert($msg) {
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+}
 
-if (isset($_POST['email']))
+if (isset($_POST['emailid']))
 {
-$email=$_POST['email'];
+$email=$_POST['emailid'];
+}
+else if(isset($_SESSION['user_email_address']))
+$email=$_SESSION['user_email_address'];
+
+if(!isset($_SESSION['access_token'])){
+  alert("You are not logged in system log into system and try again");
+  echo "<a href='mybookings.html'> go back to my bookings</a>";
+  exit;
 }
 
 
-if (isset($_POST['mob']))
-{
-$mob=$_POST['mob'];
-}
-
-
-$sql = "SELECT email,pnr,bid,fromLoc,toLoc,dep_date,dep_time ,arr_time,fare,mob,status FROM reserves,passenger,route WHERE passenger.pid = reserves.pid and email='$email' and mob ='$mob' and reserves.rid=route.rid   ";
+$sql = "SELECT email,pnr,bid,fromLoc,mob,toLoc,dep_date,dep_time ,arr_time,fare,status FROM reserves,passenger,route WHERE passenger.pid = reserves.pid and email='$email'  and reserves.rid=route.rid   ";
 $retval = mysqli_query( $con, $sql);
 if(! $retval )
 {
@@ -260,7 +265,7 @@ if ($row['pnr'] != ''  )
 {
 
 
-$sql = "SELECT email,pnr,bid,fromLoc,toLoc,dep_date,dep_time ,arr_time,fare,mob,status FROM reserves,passenger,route WHERE passenger.pid = reserves.pid and email='$email' and mob ='$mob' and reserves.rid=route.rid and status='booked'  ";
+$sql = "SELECT email,pnr,bid,fromLoc,toLoc,dep_date,mob,dep_time ,arr_time,fare,status FROM reserves,passenger,route WHERE passenger.pid = reserves.pid and email='$email' and  reserves.rid=route.rid and status='booked'  ";
 $retval = mysqli_query( $con, $sql);
 if(! $retval )
 {
@@ -291,6 +296,7 @@ echo "
 <th border='2'>Arival time</th>
 <th border='2'>Fare(&#8377;)</th>
 <th border='2'>Status</th>
+<th border='2'>Mobile number Used</th>
 <th border='2'>Cancel
 
 
@@ -298,7 +304,7 @@ echo "
 <th border='2'>Print</th>
 </tr border='2'>";
 
-$sql = "SELECT email,pnr,bid,fromLoc,toLoc,dep_date,dep_time ,arr_time,fare,mob,status FROM reserves,passenger,route WHERE passenger.pid = reserves.pid and email='$email' and mob ='$mob' and reserves.rid=route.rid and status='booked' ";
+$sql = "SELECT email,pnr,bid,fromLoc,toLoc,mob,dep_date,dep_time ,arr_time,fare,status FROM reserves,passenger,route WHERE passenger.pid = reserves.pid and email='$email' and reserves.rid=route.rid  ";
 $retval = mysqli_query( $con, $sql);
 if(! $retval )
 {
@@ -329,13 +335,23 @@ echo "<td border='2'><center>" . $row['arr_time']. "</center></td>";
 
 echo "<td border='2'><center>". $row['fare']."/-</center></td>";
 echo "<td border='2'><center>". $row['status']."</center></td>";
-
-echo "<td border='2'><center><form action='cancel.php' method='post'><input type='hidden'  name='pnr' value=". $row['pnr'].">
+echo "<td border='2'><center>". $row['mob']."</center></td>";
+echo "<td border='2'><center><form action='cancel.php' method='post'>
+<input type='hidden'  name='pnr' value=". $row['pnr'].">
 <input type='hidden'  name='email' value=". $row['email'].">
+<input type='hidden'  name='status' value='booked' >
+<input type='hidden'  name='mob' value=". $row['mob'].">";
+if($row['status']!='cancelled')
+echo "<input type='submit' value='cancel ticket' >";
+else
+echo "CANCELLED TICKED";
+echo "</form></center> </td>";
+echo "<td border='2'><center><form action='print.php' method='post'>
 <input type='hidden'  name='mob' value=". $row['mob'].">
-<input type='hidden'  name='mob' value='$mob'><input type='hidden'  name='status' value='booked'><input type='submit' value='cancel ticket'></form></center> </td>";
-echo "<td border='2'><center><form action='print.php' method='post'><input type='hidden'  name='pnr' value=". $row['pnr']."><input type='hidden'  name='mob' value=".$row['mob']."><input type='submit' value='print'></form></center></td>";
+<input type='hidden'  name='pnr' value=". $row['pnr'].">
+<input type='submit' value='print'></form></center></td>";
 echo "</tr border='2'>";
+
 }
 echo "</center></table><p>
 <br><br><br><br><br><br>";
@@ -343,7 +359,7 @@ echo "</center></table><p>
 else
 {
 
-$sql = "SELECT email,pnr,bid,fromLoc,toLoc,dep_date,dep_time ,arr_time,fare,mob,status FROM reserves,passenger,route WHERE passenger.pid = reserves.pid and email='$email' and mob ='$mob' and reserves.rid=route.rid and status='cancelled' ";
+$sql = "SELECT email,pnr,bid,fromLoc,toLoc,dep_date,dep_time,mob,arr_time,fare,status FROM reserves,passenger,route WHERE passenger.pid = reserves.pid and email='$email'  and reserves.rid=route.rid and status='cancelled' ";
 $retval = mysqli_query( $con, $sql);
 if(! $retval )
 {
@@ -363,6 +379,7 @@ echo "<center><table border='3' style='border-color: green; cellspacing='13' cel
 <th border='2'>Arival time</th>
 <th border='2'>Fare(&#8377;)</th>
 <th border='2'>Status</th>
+<th border='2'>Mobile Number Used</th>
 
 
 </tr border='2'>";
@@ -394,7 +411,7 @@ echo "<td border='2'><center>" . $row['arr_time']. "</center></td>";
 
 echo "<td border='2'><center>". $row['fare']."/-</center></td>";
 echo "<td border='2'><center>". $row['status']."</center></td>";
-
+echo "<td border='2'><center>". $row['mob']."</center></td>";
 
 echo "</tr border='2'>";
 }
@@ -413,11 +430,11 @@ echo "</center></table><p>
 
 }
 
-else if ( $email ==  ''  && $mob == '')
+else if ( $email ==  ''  )
 {
 echo "
 <pun>
-<font face='Cursive' font size='5' color='yellow'>Please Enter Your email id & Mobile Number...</font></a>
+<font face='Cursive' font size='5' color='yellow'>Please Enter Your email id </font></a>
 </pun>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 ";

@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -40,6 +39,7 @@
       })
 
     });
+
     </script>
   <script type="text/javascript">
   // Login Form
@@ -63,6 +63,15 @@
 	    });
 	});
   </script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+grecaptcha.ready(function() {
+    grecaptcha.execute('6LdbN_MUAAAAAJlLbX7m8rg48ee1GBASN1osRpij', {action: 'homepage'}).then(function(token) {
+      // console.log(token);
+    });
+});
+</script>
+
 </head>
 <body>
    <!-- Start Header -->
@@ -152,7 +161,7 @@ position:absolute;
 }
 </style>
 <center>
-<font face="Impact" font size="6" color="Maroon"><u>Route Details </u></font>
+<font face="Impact" font size="6" color="Maroon" ><u>Route Details </u></font>
 <br>
 </center>
 		<div style="padding-left: 190px">
@@ -162,58 +171,60 @@ position:absolute;
 <br>
 <font face="Elephant" font size="4" color="black" style="margin-right: 120px">Route id&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
 
-			<input type= "text" name="rid">
+			<input type= "text" name="rid" required>
 
 <br>
 		<br>
-<font face="Elephant" font size="4" color="black" style="margin-right: 142px">Bus id&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font><input type= "text" name="bid">
+<font face="Elephant" font size="4" color="black" style="margin-right: 142px">Bus id&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font><input type= "text" name="bid" required>
 
 <br><br>
 <font face="Elephant" font size="4" color="black" style="margin-right: 58px">Source location&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
-<input type= "text" name="fromLoc">
+<input type= "text" name="fromLoc" required>
 
 
 <br>
 <br>
 <font face="Elephant" font size="4" color="black" style="margin-right: 15px">Destination location&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
-<input type= "text" name="toLoc">
+<input type= "text" name="toLoc" required>
 
 <br><br>
 <font face="Elephant" font size="4" color="black" style="margin-right: 154px">Fare&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
-<input type= "text" name="fare">
+<input type= "text" name="fare" required>
 
 <br><br>
 <font face="Elephant" font size="4" color="black" style="margin-right: 53px">Departure Date&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
-<input type= "date" name="dep_date">
+<input type= "date" name="dep_date" required>
 
 <br><br>
 <font face="Elephant" font size="4" color="black"  style="margin-right: 51px">Departure Time&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
-<input type= "time" name="dep_time">
+<input type= "time" name="dep_time" required>
 
 <br><br>
 <font face="Elephant" font size="4" color="black"  style="margin-right: 85px">Arrival Date&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
-<input type= "date" name="arr_date">
+<input type= "date" name="arr_date" required>
 
 
 <br>
 		<br>
 <font face="Elephant" font size="4" color="black"  style="margin-right: 81px">Arrival Time&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
-<input type= "time" name="arr_time">
+<input type= "time" name="arr_time" required>
 
 <br>
 		<br>
 <font face="Elephant" font size="4" color="black"  style="margin-right: 63px">Available seats&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
-<input type= "text" name="avalseats">
+<input type= "text" name="avalseats" required>
 
 <br>
 		<br>
 <font face="Elephant" font size="4" color="black"  style="margin-right: 53px">Maximum seats&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
-<input type= "text" name="maxseats">
+<input type= "text" name="maxseats" required>
 <br>
 		<br>
 			</div>
 		<center>
-<input type="submit" value="Confirm">
+      <div class="g-recaptcha" data-sitekey="6LdOQ_MUAAAAAGNXAkHBTWnw8jxE0slDpumsB4sh"></div>
+<input type="submit" value="Post" name="post">
+<input type="hidden" id="token" name="token" >
 
 </center>
 <center>
@@ -286,5 +297,7 @@ position:absolute;
 			 </div>
 	       </div>
   <!-- End Footer -->
+
   </body>
+
 </html>

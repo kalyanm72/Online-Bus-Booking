@@ -1,3 +1,5 @@
+
+<?php session_start(); ?>
 <html>
 
 <head>
@@ -129,7 +131,9 @@ position:absolute;
         top:145;
         left:200px;
 }
-
+.isHidden{
+  display: none;
+}
 
 </style>
 
@@ -278,7 +282,7 @@ on
 
 
 
-
+$_SESSION['prev_url']=$_SERVER['REQUEST_URI'];
 echo "<table border='3' style='border-color: green; cellspacing='8' cellpadding='8'>
 <tr>
 
@@ -701,7 +705,6 @@ echo "
 mysqli_close($con);
 ?>
 
-
 <form action="selectedbus.php" method="post">
 <div class="transbox">
 
@@ -732,7 +735,8 @@ mysqli_close($con);
 <br></center>
 <center>
 <font face="Script MT" font size="4" color="black">Email &#160;:&#160;</font>&#160;&#160;&#160;&#160;&#160;
-<input type= "email" name="email_id">
+
+<input type= "email" name="email_id" value="<?=isset($_SESSION['access_token']) ? $_SESSION['user_email_address'] : '' ?>">
 <br>
 
 <br>
@@ -750,8 +754,10 @@ mysqli_close($con);
 
 
 
-<center>
-<input type="submit" value="Book Now"></center>
+<center >
+      <input type="submit" value="Book Now" class="<?= !isset($_SESSION['access_token']) ? 'isHidden' : ' ' ?>"></center>
+      <center class="<?= isset($_SESSION['access_token']) ? 'isHidden' : ' ' ?>">
+            Login Now </center>
 </p>
 </div></f>
 </form>

@@ -245,7 +245,14 @@ if (isset($_POST['mob']))
 {
 $mob=$_POST['mob'];
 }
-
+function alert($msg) {
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+}
+if(!isset($_SESSION['access_token'])){
+  alert("You are not logged in system log into system and try again");
+  echo "<a href='print.html'> go back to prints page</a>";
+  exit;
+}
 
 $sql = "SELECT email,pnr,bid,fromLoc,toLoc,dep_date,dep_time ,arr_time,fare,mob,status FROM reserves,passenger,route WHERE passenger.pid = reserves.pid and email='$email' and mob ='$mob' and reserves.rid=route.rid   ";
 $retval = mysqli_query( $con, $sql);

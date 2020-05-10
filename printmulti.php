@@ -17,6 +17,14 @@ $pnr='';
 
 $apnr=$_POST['pnr'];
 
+function alert($msg) {
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+}
+if(!isset($_SESSION['access_token'])){
+  alert("You are not logged in system log into system and try again");
+  echo "<a href='print.html'> go back to prints page</a>";
+  exit;
+}
 
 if (empty($apnr))
 {

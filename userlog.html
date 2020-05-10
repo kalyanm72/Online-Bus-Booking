@@ -118,20 +118,22 @@
 
    <!-- Start Main Content -->
 	<pub>
-<font face="Impact" font size="7" color="yellow">User Login</font></a>
+<font face="Impact" font size="7" color="yellow">User Registration</font></a>
 </pub>
-<form action="bussignup.php" method="post">
+<form action="userreg.php" method="post">
 <center><div class="transbox">
 <style>
 .transbox{
 position:absolute;
 top:300px;
+margin-bottom: 100px;
+
 left:470px;
 
 border:1px solid black;
 background:skyblue;
 width:400px;
-height:220px;
+height:320px;
 border-radius:15px;
 }
 
@@ -151,17 +153,33 @@ position:absolute;
 <center>
 <font face="Impact" font size="6" color="Maroon"><u>User Details </u></font><br>
 <center>
-<br><font face="Elephant" font size="4" color="black">username&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
-<input type= "text" name="uname">
-
-</center><center><br>
-<font face="Elephant" font size="4" color="black">password &#160;:</font>
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<input type= "text" name="password">
 <br>
-<br><br></center>
-
-
+<font face="Elephant" font size="4" color="black">username&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
+<input type= "text" name="uname" value="">
+</center>
 <center>
+<br>
+<font face="Elephant" font size="4" color="black">mobile number&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
+<input type= "text" name="mob" value="">
+</center>
+<center>
+<br>
+<font face="Elephant" font size="4" color="black">password &#160;:</font>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<input type= "password" name="password" value="">
+<br>
+</center>
+<center>
+<br>
+<font face="Elephant" font size="4" color="black">confirm password:</font>
+<input type= "password" name="repassword" value="">
+</center>
+<center>
+<br>
+<font face="Elephant" font size="4" color="black">Email id&#160;:&#160;&#160;&#160;&#160;&#160;&#160;</font>
+<input type= "email" name="emailid" value="">
+</center>
+<center>
+  <!-- <?php echo "hello"?> -->
 <input type="submit" value="Log in"></center>
 </p>
 </div></center>
