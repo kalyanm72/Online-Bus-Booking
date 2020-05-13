@@ -5,6 +5,6 @@
   $client->setAuthConfig('client_secret.json');
   $client->addScope('email');
   $client->addScope('profile');
-  $client->setRedirectUri("http://localhost/online3/callback.php");
+  $client->setRedirectUri("https://onlinebusbooking.herokuapp.com/callback.php");
 
  ?>
